@@ -17,6 +17,13 @@ class Courier extends Model {
 
     return this;
   }
+
+  // Método estatico para relacionar o "avatar_id" da tabelas couriers
+  // com o campo "id" da tabela files
+  static associate(models) {
+    // belongsTo > pertence a...
+    this.belongsTo(models.File, { foreignKey: 'avatar_id', as: 'avatar' });
+  }
 }
 
 export default Courier;

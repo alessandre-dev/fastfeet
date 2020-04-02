@@ -1,6 +1,7 @@
 import 'dotenv/config';
 
 import express from 'express';
+import path from 'path';
 import routes from './routes';
 
 // |> Importa o arquivo de database para realizar a conexão com o BD
@@ -24,6 +25,12 @@ class App {
   middlewares() {
     // |> Para enviar/receber requisições no formato JSON
     this.server.use(express.json());
+
+    // |> Serviço estático do express para imagens e arquivos
+    this.server.use(
+      '/files',
+      express.static(path.resolve(__dirname, '..', 'tmp', 'uploads'))
+    );
   }
 
   routes() {
